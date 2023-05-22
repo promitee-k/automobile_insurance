@@ -14,12 +14,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authRouter = void 0;
 const express_1 = __importDefault(require("express"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const Users_1 = require("../models/Users");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const router = express_1.default.Router();
 exports.authRouter = router;
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, email, password } = req.body;
-    const user = yield Users_1.UserModel.findOne({ email });
-    res.json(user);
+    const user = yield Users_1.UserModel.find({ email });
+    if (user) {
+        return res.json({ message: "Email already in use" });
+    }
+    const hashedPassword = bcrypt_1.default.hash(password, 10);
+    const newUser = new Users_1.UserModel({ username, email, password: hashedPassword });
+    newUser.save();
+    res.json({ message: "User Registered Successfully!" });
 }));
-router.post("/signin", () => __awaiter(void 0, void 0, void 0, function* () { }));
+router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, email, password } = req.body;
+    const user = yield Users_1.UserModel.findOne({ email });
+    if (!user) {
+        return res.json({ message: "User does not exist" });
+    }
+    const isPasswordValid = yield bcrypt_1.default.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.json({ message: "Incorrect Password" });
+    }
+    const token = jsonwebtoken_1.default.sign({ id: user._id }, "secret"); //use environmental var here
+    res.json({ token, userID: user._id });
+}));

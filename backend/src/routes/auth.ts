@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/signup", async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
-  const user = await UserModel.findOne({ email: email });
+  const user = await UserModel.find({ email });
   if (user) {
     return res.json({ message: "Email already in use" });
   }
@@ -18,8 +18,8 @@ router.post("/signup", async (req: Request, res: Response) => {
 });
 
 router.post("/login", async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  const user = await UserModel.findOne({ email: email });
+  const { username, email, password } = req.body;
+  const user = await UserModel.findOne({ email });
   if (!user) {
     return res.json({ message: "User does not exist" });
   }
