@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
 const AutomobileSchema = new mongoose.Schema({
-  id: { type: String },
   type: { type: String },
-  model: { type: String },
-  make: { type: String },
+  models: { type: [String] },
+  brand: { type: String },
   year: { type: String },
 });
 
