@@ -2,8 +2,11 @@ import express, { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { UserModel } from "../models/Users";
 import jwt from "jsonwebtoken";
+import { AutoMobileModel } from "../models/Automobiles";
 
 const router = express.Router();
+
+
 
 router.post("/signup", async (req: Request, res: Response) => {
   const { username, email, password } = req.body;

@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { authRouter } from "./routes/auth";
 import { quoteRouter } from "./routes/quote";
+import { AutoMobileModel } from "./models/Automobiles";
 
 const app = express();
 const port = 3001;
@@ -14,8 +15,9 @@ app.use("/auth", authRouter);
 
 app.use("/quote", quoteRouter);
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("HELLO FROM EXPRESS");
+app.get("/", async (req, res) => {
+  let automobiles = await AutoMobileModel.find();
+  res.send(automobiles).status(200);
 });
 mongoose.connect(
   "mongodb+srv://admin:Password99@automobile-insurance.sqpr0vj.mongodb.net/automobile-insurance?retryWrites=true&w=majority"
