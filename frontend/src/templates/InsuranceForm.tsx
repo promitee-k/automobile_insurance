@@ -1,4 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Button from '../atoms/Button';
+import Input from '../atoms/Input';
+import Label from '../atoms/Label';
+import FormDiv from '../organisms/FormDiv';
 
 type CarInsuranceFormData = {
   firstName: string;
@@ -18,44 +22,47 @@ const CarInsuranceForm = () => {
   };
 
   return (
+
+    <FormDiv>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label>First Name</label>
-        <input type="text" {...register('firstName', { required: 'First name is required' })} />
+        <Label>First Name</Label>
+        <Input type="text" {...register('firstName', { required: 'First name is required' })} />
         {errors.firstName && <span>{errors.firstName.message}</span>}
       </div>
       <div>
-        <label>Last Name</label>
-        <input type="text" {...register('lastName', { required: 'Last name is required' })} />
+        <Label>Last Name</Label>
+        <Input type="text" {...register('lastName', { required: 'Last name is required' })} />
         {errors.lastName && <span>{errors.lastName.message}</span>}
       </div>
       <div>
-        <label>Email</label>
-        <input type="email" {...register('email', { required: 'Email is required' })} />
+        <Label>Email</Label>
+        <Input type="email" {...register('email', { required: 'Email is required' })} />
         {errors.email && <span>{errors.email.message}</span>}
       </div>
       <div>
-        <label>Phone</label>
-        <input type="text" {...register('phone', { required: 'Phone number is required' })} />
+        <Label>Phone</Label>
+        <Input type="text" {...register('phone', { required: 'Phone number is required' })} />
         {errors.phone && <span>{errors.phone.message}</span>}
       </div>
       <div>
-        <label>Car Make</label>
-        <input type="text" {...register('carMake', { required: 'Car make is required' })} />
+        <Label>Car Make</Label>
+        <Input type="text" {...register('carMake', { required: 'Car make is required' })} />
         {errors.carMake && <span>{errors.carMake.message}</span>}
       </div>
       <div>
-        <label>Car Model</label>
-        <input type="text" {...register('carModel', { required: 'Car model is required' })} />
+        <Label>Car Model</Label>
+        <Input type="text" {...register('carModel', { required: 'Car model is required' })} />
         {errors.carModel && <span>{errors.carModel.message}</span>}
       </div>
       <div>
-        <label>Car Year</label>
-        <input type="number" {...register('carYear', { required: 'Car year is required' })} />
+        <Label>Car Year</Label>
+        <Input type="number" {...register('carYear', { required: 'Car year is required' })} />
         {errors.carYear && <span>{errors.carYear.message}</span>}
       </div>
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
+    </FormDiv>
   );
 };
 

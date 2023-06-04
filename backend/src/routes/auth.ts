@@ -22,7 +22,7 @@ router.post("/signup", async (req: Request, res: Response) => {
 
 router.post("/login", async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
-  const user = await UserModel.findOne({ email });
+  const user = await UserModel.findOne({ email });  //doesnt work
   if (!user) {
     return res.json({ message: "User does not exist" });
   }

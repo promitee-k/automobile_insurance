@@ -2,11 +2,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavContainer = styled.nav`
-  background-color: #333;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+margin: 0;
+padding:0;
+width: 100%;
+height: 60px;
+background-color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+text-decoration: none;
 `;
 
 const NavBrand = styled(Link)`
@@ -14,6 +19,7 @@ const NavBrand = styled(Link)`
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
+  
 `;
 
 const NavMenu = styled.ul`
@@ -39,16 +45,19 @@ const NavLink = styled(Link)`
 const Navbar= () => {
   return (
     <NavContainer>
-      <NavBrand to="/">Logo</NavBrand>
+      <NavBrand to="/auth">auth</NavBrand>
       <NavMenu>
         <NavMenuItem>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">quote</NavLink>
         </NavMenuItem>
         <NavMenuItem>
-          <NavLink to="/">About</NavLink>
+          <NavLink to="/packages">package</NavLink>
         </NavMenuItem>
         <NavMenuItem>
-          <NavLink to="/">Contact</NavLink>
+          <NavLink to="/insurance">insurance</NavLink>
+        </NavMenuItem>
+        <NavMenuItem>
+          <NavLink to="/payment">payment</NavLink>
         </NavMenuItem>
       </NavMenu>
     </NavContainer>

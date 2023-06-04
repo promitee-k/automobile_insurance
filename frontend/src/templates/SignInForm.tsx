@@ -1,6 +1,9 @@
 import { useForm } from 'react-hook-form';
+import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
+import FormDiv from '../organisms/FormDiv';
+import SignUpForm from './SignUpForm';
 
 const SignInForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>();
@@ -14,6 +17,8 @@ const SignInForm = () => {
   };
 
   return (
+ <>
+    <FormDiv>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Label>Email</Label>
@@ -25,8 +30,13 @@ const SignInForm = () => {
         <Input type="password" {...register('password', { required: 'Password is required' })} />
         {errors.password && <span>{errors.password.message}</span>}
       </div>
-      <button type="submit">Sign In</button>
+      <Button type="submit">Sign In</Button>
     </form>
+  
+
+    </FormDiv>
+      <SignUpForm/>
+      </>
   );
 };
 

@@ -1,0 +1,16 @@
+#container {
+    overflow: hidden;
+    width: 100vw;
+    padding: 50px;
+    margin: auto;
+}
+
+#inner {
+    overflow: hidden;
+    /* width: max-content; */
+}
+
+.child {
+    float: left;
+    width: 500px;
+}
