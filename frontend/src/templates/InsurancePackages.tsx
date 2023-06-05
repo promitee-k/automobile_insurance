@@ -7,7 +7,7 @@ type CarInsurancePackage = {
 };
 const CarInsuranceCards = () => {
   const location = useLocation();
-  console.log(location);
+
   const navigate = useNavigate();
   const estimatedPrice = () => {
     let basePrice = 28000;

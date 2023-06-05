@@ -18,12 +18,12 @@ const PaymentForm = () => {
     formState: { errors },
   } = useForm<PaymentFormData>();
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<PaymentFormData> = (data) => {
-    console.log(data); // You can perform your payment processing logic here
-    
+  const onSubmit: SubmitHandler<PaymentFormData> = () => {
+  
     alert("Payment Successful!");
-    
+    // window.localStorage.removeItem("userID")
     navigate("/");
+   
   };
 
   return (
@@ -33,6 +33,7 @@ const PaymentForm = () => {
           <Label>Card Number</Label>
           <Input
             type="text"
+            placeholder="Enter 16digit card number"
             {...register("cardNumber", {
               required: "Card number is required",
               maxLength: 16,
@@ -45,6 +46,7 @@ const PaymentForm = () => {
           <Label>Expiry Date</Label>
           <Input
             type="text"
+            placeholder="MM/YY"
             {...register("expiryDate", {
               required: "Expiry date is required",
               pattern: {
@@ -59,7 +61,7 @@ const PaymentForm = () => {
           <Label>CVV</Label>
           <Input
             type="text"
-            {...register("cvv", { required: "CVV is required", maxLength: 3 })}
+            {...register("cvv", { required: "CVV is required",minLength:3, maxLength: 3 })}
           />
           {errors.cvv && <span>{errors.cvv.message}</span>}
         </div>

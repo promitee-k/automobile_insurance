@@ -25,7 +25,7 @@ interface CarFormProps {
 
 const area =['Tokyo','Osaka','Nagano']
 const CarForm = ({carData}:CarFormProps) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<CarFormData>();
+  const {  handleSubmit, formState: { errors } } = useForm<CarFormData>();
   const [selectedBrand,setSelctedBrand] = useState('Search brand');
   const [selectedModel,setSelectedModel] = useState('Search model')
   const [selectedYear,setSelectedYear] = useState('Year')
@@ -33,12 +33,10 @@ const CarForm = ({carData}:CarFormProps) => {
   const [history,setHistory]= useState(false)
   const brands = carData?.map((e)=>e.brand) ??[] //returns undefined
   const models = carData?.find((e)=> e.brand === selectedBrand)?.models ?? []
- console.log(models)
- console.log(brands)
 
-  const onSubmit: SubmitHandler<CarFormData> = (data) => {
-    console.log(data)
-    console.log(selectedBrand,selectedModel,selectedArea,history)
+
+  const onSubmit: SubmitHandler<CarFormData> = () => {
+
     navigate('/packages',{
       state:{
         carData:{

@@ -17,7 +17,7 @@ const Home =  ()=> {
   useEffect(()=>{
     fetchInfo();
   },[]);
-  // const navigate = useNavigate()
+
   return (
     <>
     <div id="container">

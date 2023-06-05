@@ -31,7 +31,7 @@ export type InsuranceData = {
 const CarInsuranceForm = () => {
 
   const [insuranceData, setInsuranceData] = useState<InsuranceData>();
-  // const [cookies, _] = useCookies(["access_token"]);
+
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -41,7 +41,7 @@ const CarInsuranceForm = () => {
   } = useForm<InsuranceData>();
 
   const onSubmit: SubmitHandler<InsuranceData> = async (data) => {
-    console.log(data); // You can perform your form submission logic here
+ 
     setInsuranceData({
       ...data,
     });
@@ -62,7 +62,7 @@ const CarInsuranceForm = () => {
       // } catch (error) {
       //   console.error(error);
       // }
-      console.log(insuranceData)
+
      
       
 

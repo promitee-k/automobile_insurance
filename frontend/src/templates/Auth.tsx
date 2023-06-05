@@ -24,7 +24,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.state);
+
   const {insuranceData } = location.state
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -35,7 +35,7 @@ const Login = () => {
       });
       alert("Success!");
       setCookies("access_token", result.data.token);
-      window.localStorage.setItem("userID", result.data.userID);
+      // window.localStorage.setItem("userID", result.data.userID);
           await axios.post(
           "http://localhost:3001/insurance/details",
           {
