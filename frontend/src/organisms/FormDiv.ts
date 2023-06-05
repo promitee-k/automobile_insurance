@@ -7,7 +7,7 @@ color: #ffff;
 border: none;
 border-radius: 4px;
 align-items: center;
-
+display:flex;
 `;
 
 

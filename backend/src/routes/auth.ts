@@ -1,39 +1,70 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { UserModel } from "../models/Users";
 import jwt from "jsonwebtoken";
-import { AutoMobileModel } from "../models/Automobiles";
 
 const router = express.Router();
 
-
-
 router.post("/signup", async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
-  const user = await UserModel.find({ email });
+  const { email, password } = req.body;
+  const user = await UserModel.findOne({ email });
   if (user) {
     return res.json({ message: "Email already in use" });
   }
-  const hashedPassword = bcrypt.hash(password, 10);
-  const newUser = new UserModel({ username, email, password: hashedPassword });
-  newUser.save();
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const newUser = new UserModel({ email, password: hashedPassword });
+  await newUser.save();
   res.json({ message: "User Registered Successfully!" });
 });
 
-router.post("/login", async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
-  const user = await UserModel.findOne({ email });  //doesnt work
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await UserModel.findOne({ email });
+
   if (!user) {
-    return res.json({ message: "User does not exist" });
+    return res
+      .status(400)
+      .json({ message: "Email or password is incorrect" });
   }
   const isPasswordValid = await bcrypt.compare(password, user.password);
-
   if (!isPasswordValid) {
-    return res.json({ message: "Incorrect Password" });
+    return res
+      .status(400)
+      .json({ message: "Password is incorrect" });
   }
-
-  const token = jwt.sign({ id: user._id }, "secret"); //use environmental var here
+  const token = jwt.sign({ id: user._id }, "secret");
   res.json({ token, userID: user._id });
 });
 
+// export { router as userRouter };
+
+// export const verifyToken = (req, res, next) => {
+//   const authHeader = req.headers.authorization;
+//   if (authHeader) {
+//     jwt.verify(authHeader, "secret", (err) => {
+//       if (err) {
+//         return res.sendStatus(403);
+//       }
+//       next();
+//     });
+//   } else {
+//     res.sendStatus(401);
+//   }
+// };
+
 export { router as authRouter };
+
+// export const verifyToken = (req :Request,res:Response, next: NextFunction) => {
+//   const authHeader = req.headers.authorization;
+//   if (authHeader) {
+//     jwt.verify(authHeader, "secret", (err) => {
+//       if (err) {
+//         return res.sendStatus(403);
+//       }
+//       next();
+//     });
+//   } else {
+//     res.sendStatus(401);
+//   }
+// };

@@ -4,6 +4,7 @@ import Input from '../atoms/Input';
 import Label from '../atoms/Label';
 import FormDiv from '../organisms/FormDiv';
 import SignUpForm from './SignUpForm';
+// import SignUpForm from './SignUpForm';
 
 const SignInForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormData>();
@@ -14,6 +15,7 @@ const SignInForm = () => {
   };
   const onSubmit = (data:SignInFormData) => {
     console.log(data); // You can perform your sign-in logic here
+    
   };
 
   return (
@@ -32,10 +34,11 @@ const SignInForm = () => {
       </div>
       <Button type="submit">Sign In</Button>
     </form>
-  
-
     </FormDiv>
-      <SignUpForm/>
+      <FormDiv>
+     <SignUpForm/>
+      </FormDiv>
+ 
       </>
   );
 };

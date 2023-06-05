@@ -12,21 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.insuranceRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const auth_1 = require("./routes/auth");
-const Automobiles_1 = require("./models/Automobiles");
-const insurance_1 = require("./routes/insurance");
-const app = (0, express_1.default)();
-const port = 3001;
-app.use(express_1.default.json());
-app.use((0, cors_1.default)());
-app.use("/auth", auth_1.authRouter);
-app.use("/insurance", insurance_1.insuranceRouter);
-app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let automobiles = yield Automobiles_1.AutoMobileModel.find();
-    res.send(automobiles).status(200);
+const Insurances_1 = require("../models/Insurances");
+const router = express_1.default.Router();
+exports.insuranceRouter = router;
+router.post("/details", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newInsurance = new Insurances_1.InsuranceModel(Object.assign({}, req.body));
+    yield newInsurance.save();
+    res.json({ message: 'Insurance data stored' });
 }));
-mongoose_1.default.connect("mongodb+srv://admin:Password99@automobile-insurance.sqpr0vj.mongodb.net/automobile-insurance?retryWrites=true&w=majority");
-app.listen(port, () => console.log("server started"));

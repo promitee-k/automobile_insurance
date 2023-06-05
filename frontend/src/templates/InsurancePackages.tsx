@@ -1,63 +1,64 @@
-import { useNavigate , Link} from "react-router-dom";
-import "./templates.css"
+import { useNavigate, useLocation } from "react-router-dom";
+import "./templates.css";
 type CarInsurancePackage = {
   title: string;
   coverage: string;
   price: number;
 };
-type CarInsuranceData = {
-  brand: string;
-  model: string;
-  year: string;
-  area: string;
-  accidentHistory: boolean;
-};
+const CarInsuranceCards = () => {
+  const location = useLocation();
+  console.log(location);
+  const navigate = useNavigate();
+  const estimatedPrice = () => {
+    let basePrice = 28000;
 
-const CarInsuranceCards = (data: CarInsuranceData) => {
-  const navigate = useNavigate()
-  const estimatedPrice = (data: CarInsuranceData)=>{
-    let basePrice =28000;
-     
-    if(data.accidentHistory){
-       basePrice += basePrice*.15;
+    if (location.state.carData.accidentHistory) {
+      basePrice += basePrice * 0.15;
     }
-    if(data.area== 'Tokyo'){
-      basePrice += basePrice*.10;
+    if (location.state.carData.area == "Tokyo") {
+      basePrice += basePrice * 0.1;
     }
-    return basePrice
-  }
+    return basePrice;
+  };
   const carInsurancePackages: CarInsurancePackage[] = [
     {
-      title: 'Basic Package',
-      coverage: 'Liability coverage',
-      price: estimatedPrice(data),   //this should be from the carform
+      title: "Basic Package",
+      coverage: "Liability coverage",
+      price: estimatedPrice(), //this should be from the carform
     },
     {
-      title: 'Standard Package',
-      coverage: 'Liability and collision coverage',
-      price: estimatedPrice(data)+estimatedPrice(data)*0.2 ,
+      title: "Standard Package",
+      coverage: "Liability and collision coverage",
+      price: estimatedPrice() + estimatedPrice() * 0.2,
     },
     {
-      title: 'Premium Package',
-      coverage: 'Liability, collision, and comprehensive coverage',
-      price: estimatedPrice(data)+estimatedPrice(data)*0.3 ,
+      title: "Premium Package",
+      coverage: "Liability, collision, and comprehensive coverage",
+      price: estimatedPrice() + estimatedPrice() * 0.3,
     },
   ];
 
   return (
     <div id="card-container">
       {carInsurancePackages.map((item, index) => (
-        <div key={index}id="package-cards" onClick={()=>{ navigate("/auth") }}>
+        <div
+          key={index}
+          id="package-cards"
+          onClick={() => {
+            navigate("/insurance", {
+              state: {
+                package: item.title,
+                price: item.price,
+                carData: location.state.carData,
+              },
+            });
+          }}
+        >
           <h3>{item.title}</h3>
           <p>{item.coverage}</p>
           <p>Price:{item.price}円</p>
-          <Link to={{
-            pathname:'/auth',
-          }}></Link>
         </div>
-         
       ))}
- 
     </div>
   );
 };

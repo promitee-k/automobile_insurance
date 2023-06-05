@@ -26,8 +26,9 @@ interface CarFormProps {
 const area =['Tokyo','Osaka','Nagano']
 const CarForm = ({carData}:CarFormProps) => {
   const { register, handleSubmit, formState: { errors } } = useForm<CarFormData>();
-  const [selectedBrand,setSelctedBrand] = useState('Select a brand..');
-  const [selectedModel,setSelectedModel] = useState('Select a model')
+  const [selectedBrand,setSelctedBrand] = useState('Search brand');
+  const [selectedModel,setSelectedModel] = useState('Search model')
+  const [selectedYear,setSelectedYear] = useState('Year')
   const [selectedArea,setSelectedArea] = useState('Select area')
   const [history,setHistory]= useState(false)
   const brands = carData?.map((e)=>e.brand) ??[] //returns undefined
@@ -38,7 +39,17 @@ const CarForm = ({carData}:CarFormProps) => {
   const onSubmit: SubmitHandler<CarFormData> = (data) => {
     console.log(data)
     console.log(selectedBrand,selectedModel,selectedArea,history)
-    navigate('/packages')
+    navigate('/packages',{
+      state:{
+        carData:{
+           brand: selectedBrand,
+           model: selectedModel,
+           year:selectedYear,
+           accidentHistory: history,
+           area:selectedArea
+        }
+      }
+    })
   };
   
   const navigate = useNavigate()
@@ -59,7 +70,7 @@ const CarForm = ({carData}:CarFormProps) => {
       </div>
       <div>
         <Label>Year</Label>
-        <Input type="text" {...register('year', { required: 'Year is required' })} />
+        <Input type="text" value={selectedYear} onChange ={(e)=>{setSelectedYear(e.target.value)}} />
         {errors.year && <span>{errors.year.message}</span>}
       </div>
       <div>

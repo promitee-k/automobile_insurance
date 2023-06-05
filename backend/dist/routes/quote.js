@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.quoteRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const Automobiles_1 = require("../models/Automobiles");
-const Payments_1 = require("../models/Payments");
 const router = express_1.default.Router();
 exports.quoteRouter = router;
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,6 +25,5 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (err) { }
 }));
 router.post("/payment", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newPayment = new Payments_1.PaymentModel(Object.assign({}, req.body));
-    newPayment.save();
+    //update payment status
 }));

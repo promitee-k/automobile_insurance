@@ -12,7 +12,7 @@ import CarForm from "../templates/CarForm";
 const Home =  ()=> {
   const [Cars,setCars]=useState<automobile[]>();
 
-  const fetchInfo = async() => await axios.get("http://localhost:3001").then((res)=>{setCars(res.data)})  //fetch data from mongodbb
+  const fetchInfo = async() => await axios.get("http://localhost:3001").then((res)=>{setCars(res.data)})  //fetch data from mongodb
  
   useEffect(()=>{
     fetchInfo();
