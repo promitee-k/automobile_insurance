@@ -1,6 +1,6 @@
 # AXA | Car Insurance
 
-User can get customized car insurance packages and make payments
+Get customized car insurance packages and make payments
 
 
 ## Features
