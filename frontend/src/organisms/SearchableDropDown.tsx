@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./styles.css";
+import { Dropdown } from "../atoms/Dropdown";
 
 
 type SearchableDropdownProps = {
@@ -47,7 +47,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   };
 
   return (
-    <div className="dropdown">
+    <Dropdown>
       <div className="control">
         <div className="selected-value">
           <input
@@ -82,7 +82,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
           );
         })}
       </div>
-    </div>
+    </Dropdown>
   );
 };
 

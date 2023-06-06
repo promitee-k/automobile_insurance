@@ -1,10 +1,11 @@
-.dropdown {
-    position: relative;
-    color: #333;
-    cursor: default;
-}
+import styled from "styled-components";
 
-.dropdown .arrow {
+export const Dropdown = styled.div`
+  position: relative;
+  color: #333;
+  cursor: default;
+
+  .arrow {
     border-color: #999 transparent transparent;
     border-style: solid;
     border-width: 5px 5px 0;
@@ -16,14 +17,14 @@
     right: 10px;
     top: 14px;
     width: 0;
-}
 
-.dropdown .arrow.open {
-    border-color: transparent transparent #999;
-    border-width: 0 5px 5px;
-}
+    &.open {
+      border-color: transparent transparent #999;
+      border-width: 0 5px 5px;
+    }
+  }
 
-.dropdown .selected-value input {
+  .selected-value input {
     line-height: 1.5;
     font-size: 1rem;
     color: #333;
@@ -36,9 +37,9 @@
     padding: 8px 52px 8px 10px;
     transition: all 200ms ease;
     width: 100%;
-}
+  }
 
-.dropdown .options {
+  .options {
     display: none;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -52,22 +53,23 @@
     width: 100%;
     z-index: 1000;
     -webkit-overflow-scrolling: touch;
-}
 
-.dropdown .options.open {
-    display: block;
-}
+    &.open {
+      display: block;
+    }
 
-.dropdown .option {
-    box-sizing: border-box;
-    color: rgba(51, 51, 51, 0.8);
-    cursor: pointer;
-    display: block;
-    padding: 8px 10px;
-}
+    .option {
+      box-sizing: border-box;
+      color: rgba(51, 51, 51, 0.8);
+      cursor: pointer;
+      display: block;
+      padding: 8px 10px;
 
-.dropdown .option.selected,
-.dropdown .option:hover {
-    background-color: #f2f9fc;
-    color: #333;
-}
+      &.selected,
+      &:hover {
+        background-color: #f2f9fc;
+        color: #333;
+      }
+    }
+  }
+`;
