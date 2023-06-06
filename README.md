@@ -55,9 +55,10 @@ User can get customized car insurance packages and make payments
 ## Additional details
 This project uses:
 -  `atomic design` pattern for React
-- `react-router-dom` for navigation and passing data
--  `axios` for fetching data
-- `bcrypt`for password encryption
+-  `styled-component` for styling React Components
+-  `react-router-dom` for navigation and passing data
+-  `axios` for fetching data from mongoDB
+-  `bcrypt`for password encryption 
 
 
 
