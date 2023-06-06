@@ -5,8 +5,8 @@ import Label from '../atoms/Label';
 import SearchableDropdown from '../organisms/SearchableDropDown';
 import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
-import FormDiv from '../organisms/FormDiv';
-export type CarFormData = {
+import FormDiv from '../atoms/FormDiv';
+export type QuoteFromData = {
   brand: string;
   model: string;
   year: string;
@@ -19,23 +19,23 @@ export type automobile ={
   models: string[]
 }
 
-interface CarFormProps {
+interface QuoteFromProps {
   carData:automobile[];
 }
 
-const area =['Tokyo','Osaka','Nagano']
-const CarForm = ({carData}:CarFormProps) => {
-  const {  handleSubmit, formState: { errors } } = useForm<CarFormData>();
+const area =['Tokyo','Nagano']
+const QuoteFrom = ({carData}:QuoteFromProps) => {
+  const {  handleSubmit, formState: { errors } } = useForm<QuoteFromData>();
   const [selectedBrand,setSelctedBrand] = useState('Search brand');
   const [selectedModel,setSelectedModel] = useState('Search model')
   const [selectedYear,setSelectedYear] = useState('Year')
   const [selectedArea,setSelectedArea] = useState('Select area')
   const [history,setHistory]= useState(false)
-  const brands = carData?.map((e)=>e.brand) ??[] //returns undefined
+  const brands = carData?.map((e)=>e.brand) ??[] 
   const models = carData?.find((e)=> e.brand === selectedBrand)?.models ?? []
 
 
-  const onSubmit: SubmitHandler<CarFormData> = () => {
+  const onSubmit: SubmitHandler<QuoteFromData> = () => {
 
     navigate('/packages',{
       state:{
@@ -53,7 +53,7 @@ const CarForm = ({carData}:CarFormProps) => {
   const navigate = useNavigate()
   return (
     <FormDiv>
-    <form id="myForm" onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Label>Brand</Label>
         <SearchableDropdown options={brands} selectedVal={selectedBrand} handleChange={(val)=>{
@@ -78,7 +78,7 @@ const CarForm = ({carData}:CarFormProps) => {
       </div>
       <div>
         <Label>Have you ever been in an accident</Label>
-       <Input type="checkbox" onChange={()=>{setHistory(!history)}}></Input>
+        <input type="checkbox" onChange={()=>{setHistory(!history)}}/>
       </div>
       <Button type="submit">Get Quote</Button>
     </form>
@@ -86,5 +86,5 @@ const CarForm = ({carData}:CarFormProps) => {
   );
 };
 
-export default CarForm;
+export default QuoteFrom;
 
