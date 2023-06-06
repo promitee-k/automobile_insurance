@@ -57,7 +57,7 @@ This project uses:
 -  `atomic design` pattern for React
 - `react-router-dom` for navigation and passing data
 -  `axios` for fetching data
-- `bcrypt`for encryption
+- `bcrypt`for password encryption
 
 
 
