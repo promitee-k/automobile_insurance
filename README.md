@@ -52,4 +52,13 @@ User can get customized car insurance packages and make payments
   - Add `3 digit` CVV code
   - Click `submit`
 
+## Additional details
+This project uses:
+-  `atomic design` pattern for React
+- `react-router-dom` for navigation and passing data
+-  `axios` for fetching data
+- `bcrypt`for encryption
+
+
+
 
