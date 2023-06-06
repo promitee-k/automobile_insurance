@@ -2,14 +2,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../atoms/Button";
 import Input from "../atoms/Input";
 import Label from "../atoms/Label";
-import FormDiv from "../organisms/FormDiv";
+import FormDiv from "../atoms/FormDiv";
 import { useLocation, useNavigate } from "react-router-dom";
-// import jwt from "jsonwebtoken";
-// import axios from "axios";
-// import { useState } from "react";
-// import { useCookies } from "react-cookie";
-import { useState } from "react";
-import axios from "axios";
+
+
 
 export type InsuranceData = {
   firstName: string;
@@ -30,7 +26,6 @@ export type InsuranceData = {
 
 const CarInsuranceForm = () => {
 
-  const [insuranceData, setInsuranceData] = useState<InsuranceData>();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,49 +37,11 @@ const CarInsuranceForm = () => {
 
   const onSubmit: SubmitHandler<InsuranceData> = async (data) => {
  
-    setInsuranceData({
-      ...data,
-    });
+
     navigate("/auth",{state: {
       insuranceData:{...data}}});
-    // console.log(insuranceData?.userId)
-    // if (isLoggedIn()) {
-
-      //   try {
-      //   await axios.post(
-      //     "http://localhost:3001/insurance/details",
-      //     {
-      //       ...insuranceData,
-      //       userId: window.localStorage.getItem("userID") ?? "",
-      //     },
-  
-      //   );
-      // } catch (error) {
-      //   console.error(error);
-      // }
-
-     
-      
-
-      // try {
-      //   await axios.post(
-      //     "http://localhost:3001/insurance/details",
-      //     {
-      //       ...insuranceData,
-      //       userId: window.localStorage.getItem("userID") ?? "",
-      //     },
-      //     { headers: { authorization: cookies.access_token } }
-      //   );
-      // } catch (error) {
-      //   console.error(error);
-      // }
     } 
-    // else
-    //   navigate("/auth", {
-    //     state: {
-    //       data: location.state,
-    //     },
-    //   });
+
 
 
   return (
@@ -96,6 +53,7 @@ const CarInsuranceForm = () => {
             type="text"
             {...register("firstName", { required: "First name is required" })}
           />
+          <br/>
           {errors.firstName && <span>{errors.firstName.message}</span>}
         </div>
         <div>
@@ -104,6 +62,7 @@ const CarInsuranceForm = () => {
             type="text"
             {...register("lastName", { required: "Last name is required" })}
           />
+              <br/>
           {errors.lastName && <span>{errors.lastName.message}</span>}
         </div>
         <div>
@@ -112,6 +71,7 @@ const CarInsuranceForm = () => {
             type="address"
             {...register("address", { required: "Address is required" })}
           />
+              <br/>
           {errors.address && <span>{errors.address.message}</span>}
         </div>
         <div>
@@ -120,6 +80,7 @@ const CarInsuranceForm = () => {
             type="text"
             {...register("phone", { required: "Phone number is required" })}
           />
+              <br/>
           {errors.phone && <span>{errors.phone.message}</span>}
         </div>
         <div>
@@ -130,6 +91,7 @@ const CarInsuranceForm = () => {
               required: "License number is required",
             })}
           />
+              <br/>
           {errors.licenseNumber && <span>{errors.licenseNumber.message}</span>}
         </div>
         <div>
@@ -140,6 +102,7 @@ const CarInsuranceForm = () => {
               required: "Vehicle number is required",
             })}
           />
+              <br/>
           {errors.vehicleNumber && <span>{errors.vehicleNumber.message}</span>}
         </div>
         <div>
@@ -154,6 +117,7 @@ const CarInsuranceForm = () => {
             contentEditable={false}
 
           />
+              <br/>
           {errors.carMake && <span>{errors.carMake.message}</span>}
         </div>
         <div>
@@ -168,6 +132,7 @@ const CarInsuranceForm = () => {
             contentEditable={false}
 
           />
+              <br/>
           {errors.carModel && <span>{errors.carModel.message}</span>}
         </div>
         <div>
@@ -182,6 +147,7 @@ const CarInsuranceForm = () => {
             contentEditable={false}
 
           />
+              <br/>
           {errors.carYear && <span>{errors.carYear.message}</span>}
         </div>
         <div>
@@ -196,6 +162,7 @@ const CarInsuranceForm = () => {
             contentEditable={false}
 
           />
+              <br/>
           {errors.package && <span>{errors.package.message}</span>}
         </div>
         <div>
@@ -208,6 +175,7 @@ const CarInsuranceForm = () => {
             })}
             contentEditable={false}
           />
+              <br/>
           {errors.price && <span>{errors.price.message}</span>}
         </div>
         <Button type="submit">Proceed to Payment</Button>

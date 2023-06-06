@@ -37,34 +37,7 @@ router.post("/login", async (req, res) => {
   res.json({ token, userID: user._id });
 });
 
-// export { router as userRouter };
 
-// export const verifyToken = (req, res, next) => {
-//   const authHeader = req.headers.authorization;
-//   if (authHeader) {
-//     jwt.verify(authHeader, "secret", (err) => {
-//       if (err) {
-//         return res.sendStatus(403);
-//       }
-//       next();
-//     });
-//   } else {
-//     res.sendStatus(401);
-//   }
-// };
 
 export { router as authRouter };
 
-// export const verifyToken = (req :Request,res:Response, next: NextFunction) => {
-//   const authHeader = req.headers.authorization;
-//   if (authHeader) {
-//     jwt.verify(authHeader, "secret", (err) => {
-//       if (err) {
-//         return res.sendStatus(403);
-//       }
-//       next();
-//     });
-//   } else {
-//     res.sendStatus(401);
-//   }
-// };

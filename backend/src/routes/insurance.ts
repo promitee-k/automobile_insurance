@@ -10,6 +10,5 @@ router.post("/details", async (req: Request, res: Response) => {
     await newInsurance.save();
     res.json({message:'Insurance data stored'})
 });
-// router.post("/payment", async (req: Request, res: Response) => {});
 
 export { router as insuranceRouter };

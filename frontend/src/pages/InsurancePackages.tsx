@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import "./templates.css";
+import { CardContainer, PackageCards } from "../atoms/Cards";
+
 type CarInsurancePackage = {
   title: string;
   coverage: string;
@@ -24,7 +25,7 @@ const CarInsuranceCards = () => {
     {
       title: "Basic Package",
       coverage: "Liability coverage",
-      price: estimatedPrice(), //this should be from the carform
+      price: estimatedPrice(), 
     },
     {
       title: "Standard Package",
@@ -39,11 +40,10 @@ const CarInsuranceCards = () => {
   ];
 
   return (
-    <div id="card-container">
+    <CardContainer>
       {carInsurancePackages.map((item, index) => (
-        <div
+        <PackageCards
           key={index}
-          id="package-cards"
           onClick={() => {
             navigate("/insurance", {
               state: {
@@ -57,9 +57,10 @@ const CarInsuranceCards = () => {
           <h3>{item.title}</h3>
           <p>{item.coverage}</p>
           <p>Price:{item.price}円</p>
-        </div>
+        </PackageCards>
       ))}
-    </div>
+    </CardContainer>
+    
   );
 };
 

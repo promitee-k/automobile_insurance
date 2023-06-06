@@ -16,7 +16,6 @@ const InsuranceSchema = new mongoose.Schema({
   price: { type: Number },
   licenseNumber: { type: String },
   vehicleNumber: { type: String },
-  paymentStatus: { type: String },
 });
 
 export const InsuranceModel = mongoose.model("insurances", InsuranceSchema);

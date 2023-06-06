@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
 import Input from "../atoms/Input";
 import Label from "../atoms/Label";
-import FormDiv from "../organisms/FormDiv";
+import FormDiv from "../atoms/FormDiv";
 
 type PaymentFormData = {
   cardNumber: string;
@@ -21,7 +21,6 @@ const PaymentForm = () => {
   const onSubmit: SubmitHandler<PaymentFormData> = () => {
   
     alert("Payment Successful!");
-    // window.localStorage.removeItem("userID")
     navigate("/");
    
   };

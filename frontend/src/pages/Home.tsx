@@ -1,12 +1,11 @@
 import axios from "axios";
-import {  useEffect, useState} from 'react';
-import  { automobile } from '../templates/CarForm';
-import "./home.css"
-// import { useNavigate } from "react-router-dom";
-// import Button from "../atoms/Button";
+import {  useState} from 'react';
+import  { automobile } from '../templates/QuoteFrom';
+
 import Image from "../atoms/Image";
-// import Label from "../atoms/Label";
-import CarForm from "../templates/CarForm";
+
+import QuoteFrom from "../templates/QuoteFrom";
+import { ChildElement, InnerContainer } from "../atoms/Home";
 
 
 const Home =  ()=> {
@@ -14,21 +13,19 @@ const Home =  ()=> {
 
   const fetchInfo = async() => await axios.get("http://localhost:3001").then((res)=>{setCars(res.data)})  //fetch data from mongodb
  
-  useEffect(()=>{
-    fetchInfo();
-  },[]);
-
+  fetchInfo();
   return (
     <>
-    <div id="container">
-      <div id="inner">
-    <div className="child">
-    <CarForm carData={Cars??[]}/>
-    </div>
-    <div className="child">
-    <Image src="src/assets/img_car_insurance.jpg" alt={"Car Insurance"}/></div>
-    </div>
-    </div>
+    <h1>Get Your Car Insurance</h1>
+      <InnerContainer>
+    <ChildElement>
+    <QuoteFrom carData={Cars??[]}/>
+    </ChildElement>
+    <ChildElement>
+    <Image src="src/assets/img_car_insurance.jpg" alt={"Car Insurance"}/>
+    </ChildElement>
+    </InnerContainer>
+
     </>
   );
 }

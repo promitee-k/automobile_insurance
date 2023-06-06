@@ -1,9 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import FormDiv from "../atoms/FormDiv";
-// import { InsuranceData } from "./InsuranceForm";
 import Input from "../atoms/Input";
 import Label from "../atoms/Label";
 
@@ -20,7 +18,6 @@ export const Auth = () => {
 };
 
 const Login = () => {
-  const [_, setCookies] = useCookies(["access_token"]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +26,8 @@ const Login = () => {
   const location = useLocation();
 
 
-  const {insuranceData } = location.state
+  const { state } = location;
+const insuranceData = state && state.insuranceData;
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
@@ -38,8 +36,6 @@ const Login = () => {
         password,
       });
       alert("Success!");
-      setCookies("access_token", result.data.token);
-      // window.localStorage.setItem("userID", result.data.userID);
           await axios.post(
           "http://localhost:3001/insurance/details",
           {
@@ -49,6 +45,7 @@ const Login = () => {
           },)
       navigate("/payment");
     } catch (error) {
+      alert('something went wrong')
       console.error(error);
     }
   };
@@ -85,9 +82,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const [_, setCookies] = useCookies(["access_token"]);
-  // const navigate = useNavigate();
-
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
@@ -95,9 +89,9 @@ const Register = () => {
         email,
         password,
       });
-     
       alert("Registration Completed! Now login.");
     } catch (error) {
+      alert('something went wrong')
       console.error(error);
     }
   };
