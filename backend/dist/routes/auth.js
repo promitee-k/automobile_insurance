@@ -47,16 +47,3 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const token = jsonwebtoken_1.default.sign({ id: user._id }, "secret");
     res.json({ token, userID: user._id });
 }));
-// export const verifyToken = (req :Request,res:Response, next: NextFunction) => {
-//   const authHeader = req.headers.authorization;
-//   if (authHeader) {
-//     jwt.verify(authHeader, "secret", (err) => {
-//       if (err) {
-//         return res.sendStatus(403);
-//       }
-//       next();
-//     });
-//   } else {
-//     res.sendStatus(401);
-//   }
-// };

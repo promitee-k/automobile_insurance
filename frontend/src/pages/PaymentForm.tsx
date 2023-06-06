@@ -19,10 +19,9 @@ const PaymentForm = () => {
   } = useForm<PaymentFormData>();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<PaymentFormData> = () => {
-  
     alert("Payment Successful!");
+
     navigate("/");
-   
   };
 
   return (
@@ -60,7 +59,11 @@ const PaymentForm = () => {
           <Label>CVV</Label>
           <Input
             type="text"
-            {...register("cvv", { required: "CVV is required",minLength:3, maxLength: 3 })}
+            {...register("cvv", {
+              required: "CVV is required",
+              minLength: 3,
+              maxLength: 3,
+            })}
           />
           {errors.cvv && <span>{errors.cvv.message}</span>}
         </div>
