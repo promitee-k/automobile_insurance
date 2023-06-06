@@ -5,8 +5,7 @@ User can get customized car insurance packages and make payments
 
 ## Features
 
-- Get Car InsuranceQuote
-- Get Custom Insurance Packages
+- Get Custom Car Insurance Packages
 - Make Insurance Payment
   
 ## Technologies
@@ -19,13 +18,13 @@ User can get customized car insurance packages and make payments
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/promitee-k/automobile_insurance.git`
-2. Install the dependencies of both backend and frontend using: `npm install`
-3. Build the components using:`npm run build`
-4. Start the backend: `npm run start`
-5. Start the frontend:`npm run dev`
+1. Install the dependencies of both backend and frontend using command: `npm install`
+2. Build using command:`npm run build`
+3. Start the backend using command: `npm run start`
+4. Start the frontend using command:`npm run dev`
 
 ## Usage
+
   `Getting a Quote` 
   - Select the car Brand 
   - Select the car Model
@@ -33,18 +32,24 @@ User can get customized car insurance packages and make payments
   - Select Area
   - Check accident history 
   - Click `get quote` button
+  
+
   `Selecting Packages`
   - Click the desired package card
+  
+
   `Updating Insurance Form`
-  - type in data for all the empty fields
-  - click `Proceed to Payment`
+  - Type in data for all the empty fields
+  - Click `Proceed to Payment`
+
+
   `Making Payment`
-  - in order to make payment the user needs to login
-  - if the user already has an account, type in the login credentials and click `login`
-  - if the user is new first `register` and then `login`
-  - after logging in add a `16 digit` credit card number
-  - add expiry date in the format `mm/yy`
-  - add `3 digit` CVV code
-  - click `submit`
+  - In order to make payment the user needs to be logged in
+  - If the user already has an account, type in the login credentials and click `login`
+  - If the user is new first `register` and then `login`
+  - After logging in add a `16 digit` credit card number
+  - Add expiry date in the format `mm/yy`
+  - Add `3 digit` CVV code
+  - Click `submit`
 
 
